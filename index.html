@@ -37,86 +37,40 @@
 			<div class="slides">
 				<section>
 					<div>
-            <img src="img/DeisLogo.png" class="stretched" style="border:none;background:none;box-shadow:0 0 0"/>
+						<img src="img/DeisLogo.png" class="stretched" style="border:none;background:none;box-shadow:0 0 0"/>
+						<p>
+							<large>Architecture... <i>lightning style</i></large>
+						</p>
 						<p>
 							<!-- Author - customize -->
-							<small>Chris Armstrong</a> / <a href="http://twitter.com/carmstrong_afk">@carmstrong_afk</a></small>
+							<br/>
+							<small>Kent Rancourt</small>
+							<br/>
+							<a href="https://twitter.com/krancour" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @krancour</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+							<a class="github-button" href="https://github.com/krancour" data-style="mega" aria-label="Follow @krancour on GitHub">Follow @krancour</a>
+							<br/>
+							<br/>
+							<small><a href="mailto:kent@deis.com">kent@deis.com</a></small>
 						</p>
 					</div>
 				</section>
 
 				<!-- About You - customize -->
 				<section>
-          <img src="img/me.jpg" class="stretched" style="border:none;background:none;"/>
-          <br/>
-					<ul>
-						<li>Deis engineering lead</li>
-						<li>Former SaaS builder</li>
-						<li>Former ops engineer</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>What is Deis?</h1>
+					<h2>Who is this guy?</h2>
+					<img src="img/me.jpg" style="border:none;background:none;"/>
 					<br/>
 					<ul>
-						<li>Application Platform (PaaS)</li>
-						<li>Private Heroku</li>
-						<li>Go, Python &amp; Shell</li>
-						<li>100% open source</li>
+						<li>Deis production team lead</li>
+						<li>Former devops engineer</li>
+						<li>Former application developer</li>
+						<li>Rabid comic book fan</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>Philosophy</h1>
-					<br/>
-					<ul>
-						<li>Focus on 12 Factor Apps</li>
-						<li>Release early, release often</li>
-						<li>Keep a stable developer workflow</li>
-						<li>Integrate with open source ecosystem</li>
-					</ul>
-				</section>
-
-				<section>
-					<img src="img/DeisLogo.png" class="stretched" style="border:none;background:none;box-shadow:0 0 0"/>
-					<br/>
-					<ul>
-						<li>1,200,000 downloads</li>
-						<li>~5000 stars, ~800 forks</li>
-						<li>2200+ Deis deployments daily</li>
-						<li>15 full-time devs, 150+ contributors</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Why PaaS?</h1>
-				</section>
-
-				<section>
-					<h2>Developer Self-Service</h2>
-					<ul>
-						<li>Create applications</li>
-						<li>Deploy code or Docker images</li>
-						<li>Configure runtime environment</li>
-						<li>Manage releases and rollbacks</li>
-						<li>Run admin commands</li>
-						<li>View aggregated logs</li>
-						<li>Scale via the process model</li>
-						<li>Collaborate with a team</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Division of Responsibility</h2>
-					<ul>
-						<li>Developers own the containers</li>
-						<li>Operations own the platform</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>How does it work?</h1>
+					<h2>Deis: How does it work?</h2>
 				</section>
 
 				<section>
@@ -124,7 +78,7 @@
 				</section>
 
 				<section>
-          <img src="img/DeisSystemDiagram.png" class="stretch" style="border:none;background:none;box-shadow:0 0 0"/>
+					<img src="img/DeisSystemDiagram.png" class="stretch" style="border:none;background:none;box-shadow:0 0 0"/>
 				</section>
 
 				<section>
@@ -133,41 +87,198 @@
 
 				<!-- Content slides here - customize -->
 				<section>
-					<h1>Something Cool</h1>
+					<h2>Storage Subsystem</h2>
 					<br/>
 					<ul>
-						<li>Did you know this?</li>
-						<li>What about this?</li>
-						<li>This, too</li>
-					</ul>
-				</section>
-
-				<!-- What's next - customize -->
-				<section>
-				<h2>What's next?</h2>
-					<ul>
-						<li>Deis 1.x LTS release</li>
-						<li>Deis on Kubernetes</li>
+						<li>Distributed file and object storage</li>
+						<li>Implemented using Ceph</li>
+						<li>Provides storage for:</li>
+						<ul>
+							<li>Logger</li>
+							<li>Database</li>
+							<li>Registry</li>
+						</ul>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Get involved!</h2>
+					<h2>Logging Subsystem</h2>
+					<br/>
 					<ul>
-						<li><a href="https://github.com/deis/deis">https://github.com/deis/deis</a></li>
-						<li><a href="http://docs.deis.io">http://docs.deis.io</a></li>
-						<li>#deis @ freenode</li>
-						<p>* We're hiring!</p>
+						<li>Includes:</li>
+						<ul>
+							<li>Logspout</li>
+							<li>Logger</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Logspout</h2>
+					<br/>
+					<ul>
+						<li>Runs as agent on every host</li>
+						<li>Watches STDOUT and STDERR on all containers</li>
+						<li>Forwards logs to logger</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Logger</h2>
+					<br/>
+					<ul>
+						<li>Aggregates logs internally</li>
+						<li>Short term log storage:</li>
+						<ul>
+							<li>On disk (storage subsystem)</li>
+							<li>In memory (preferred)</li>
+						</ul>
+						<li>Serves logs to Deis CLI via controller</li>
+						<li>Can drain logs to external service for:</li>
+						<ul>
+							<li>Archiving</li>
+							<li>Indexing</li>
+							<li>Searching</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Router Mesh</h2>
+					<br/>
+					<ul>
+						<li>One or more routers</li>
+						<li>Can be load balanced</li>
+						<li>Routes traffic to:</li>
+						<ul>
+							<li>Controller (API)</li>
+							<li>Builder</li>
+							<li>Applications</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Control Plane</h2>
+					<br/>
+					<ul>
+						<li>Implements Deis' workflow</li>
+						<li>Includes:</li>
+						<ul>
+							<li>Controller</li>
+							<li>Database</li>
+							<li>Builder</li>
+							<li>Registry</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Controller</h2>
+					<br/>
+					<ul>
+						<li>Provides the API</li>
+						<li>Manages platform state</li>
+						<li>Schedules and scales applications using:</li>
+						<ul>
+							<li>Fleet</li>
+							<li>Kubernetes</li>
+							<li>Mesos / Marathon</li>
+							<li>Docker Swarm</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Database</h2>
+					<br/>
+					<ul>
+						<li>Used by controller</li>
+						<li>Stores platform state:</li>
+						<ul>
+							<li>Applications, domains, certificates</li>
+							<li>Users, keys, permissions</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Builder</h2>
+					<br/>
+					<ul>
+						<li>Deploy three ways:</li>
+						<ul>
+							<li>Heroku buildpacks</li>
+							<li>Docker build (Dockerfile)</li>
+							<li>Pull existing Docker images</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Registry</h2>
+					<br/>
+					<ul>
+						<li>Platform's internal Docker registry</li>
+						<li>Stores built or pulled application images</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Data Plane</h2>
+					<br/>
+					<ul>
+						<li>Includes:</li>
+						<ul>
+							<li>Publisher</li>
+							<li>Your applications!</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Publisher</h2>
+					<br/>
+					<ul>
+						<li>Publishes application details for discovery by routers</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Your PaaS.  Your Rules.</h2>
+				</section>
+
+				<section>
+					<h2>Popular Customizations</h2>
+					<br/>
+					<ul>
+						<li>Omit storage subsystem:</li>
+						<ul>
+							<li>Provide external database</li>
+							<li>Provide external object storage (e.g. S3) for registry</li>
+							<li>Use in-memory logging and drain to logging SaaS</li>
+						</ul>
+						<li>Isolate etcd, control plane, and data plane:</li>
+						<ul>
+							<li>Increase etcd stability</li>
+							<li>Scale control plane and data plane independently</li>
+						</ul>
+					</ul>
 				</section>
 
 				<!-- Thank You - customize -->
 				<section>
 					<h2>Thanks!</h2>
-					<ul>
-						<li>twitter.com/carmstrong_afk</li>
-						<li>github.com/carmstrong</li>
-						<li>chris@deis.com</li>
-					</ul>
+					<p>
+						<br/>
+						<a href="https://twitter.com/krancour" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @krancour</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+						<a class="github-button" href="https://github.com/krancour" data-style="mega" aria-label="Follow @krancour on GitHub">Follow @krancour</a>
+						<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+						<br/>
+						<br/>
+						<small><a href="mailto:kent@deis.com">kent@deis.com</a></small>
+					</p>
 				</section>
 
 				<section data-background="img/DeisBackground.jpg"></section>
